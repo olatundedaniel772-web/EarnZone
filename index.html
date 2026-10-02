@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>EarnZone</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f7f9;
+      color: #111827;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: #22c55e;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .hero {
+      background: #111827;
+      color: white;
+      text-align: center;
+      padding: 70px 20px;
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      color: #d1d5db;
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+
+    button {
+      border: none;
+      border-radius: 8px;
+      padding: 13px 20px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .green {
+      background: #22c55e;
+      color: white;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 500px;
+      margin: 30px auto;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .card h2 {
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    .full {
+      width: 100%;
+    }
+
+    .link {
+      color: #16a34a;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .balance {
+      background: #111827;
+      color: white;
+      padding: 25px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .balance small {
+      color: #9ca3af;
+    }
+
+    .balance h1 {
+      color: #22c55e;
+      margin-top: 8px;
+    }
+
+    .info {
+      line-height: 1.8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">EarnZone</div>
+    <div>Account</div>
+  </header>
+
+
+  <!-- HOME -->
+  <section id="home">
+
+    <div class="hero">
+
+      <h1>Complete Tasks. Earn Rewards.</h1>
+
+      <p>
+        Create your account and access your personal dashboard.
+      </p>
+
+      <button class="green" onclick="showRegister()">
+        Create Account
+      </button>
+
+    </div>
+
+    <div class="container">
+
+      <div class="card">
+        <h2>How It Works</h2>
+
+        <p>1. Create your account</p>
+        <br>
+
+        <p>2. Access available tasks</p>
+        <br>
+
+        <p>3. Complete eligible tasks</p>
+        <br>
+
+        <p>4. Track your rewards</p>
+      </div>
+
+      <div class="card">
+        <h2>Already registered?</h2>
+
+        <button class="green full" onclick="showLogin()">
+          Login
+        </button>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- REGISTER -->
+  <section id="register" class="hidden">
+
+    <div class="container">
+
+      <div class="card">
+
+        <h2>Create Account</h2>
+
+        <input
+          type="text"
+          id="registerName"
+          placeholder="Full name"
+        >
+
+        <input
+          type="email"
+          id="registerEmail"
+          placeholder="Email address"
+        >
+
+        <input
+          type="password"
+          id="registerPassword"
+          placeholder="Password"
+        >
+
+        <button class="green full" onclick="register()">
+          Continue
+        </button>
+
+        <br><br>
+
+        <p>
+          Already have an account?
+          <span class="link" onclick="showLogin()">Login</span>
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- LOGIN -->
+  <section id="login" class="hidden">
+
+    <div class="container">
+
+      <div class="card">
+
+        <h2>Login</h2>
+
+        <input
+          type="email"
+          id="loginEmail"
+          placeholder="Email address"
+        >
+
+        <input
+          type="password"
+          id="loginPassword"
+          placeholder="Password"
+        >
+
+        <button class="green full" onclick="login()">
+          Login
+        </button>
+
+        <br><br>
+
+        <p>
+          Don't have an account?
+          <span class="link" onclick="showRegister()">Register</span>
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- DASHBOARD -->
+  <section id="dashboard" class="hidden">
+
+    <div class="container">
+
+      <div class="balance">
+
+        <small>Welcome</small>
+
+        <h2 id="dashboardName"></h2>
+
+        <br>
+
+        <small>Account balance</small>
+
+        <h1>₦0.00</h1>
+
+      </div>
+
+
+      <div class="card">
+
+        <h2>Your Account</h2>
+
+        <div class="info">
+
+          <p>
+            Name:
+            <b id="accountName"></b>
+          </p>
+
+          <p>
+            Email:
+            <b id="accountEmail"></b>
+          </p>
+
+          <p>
+            Account status:
+            <b>Active</b>
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <h2>Tasks</h2>
+
+        <p>
+          Your available tasks will appear here.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h2>Withdrawals</h2>
+
+        <p>
+          Withdrawal options will be added after
+          the account and payment system are connected.
+        </p>
+
+      </div>
+
+      <button
+        class="green full"
+        onclick="logout()"
+      >
+        Logout
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <footer>
+    EarnZone © 2026
+  </footer>
+
+
+  <script>
+
+    function hideAll() {
+
+      document.getElementById("home")
+        .classList.add("hidden");
+
+      document.getElementById("register")
+        .classList.add("hidden");
+
+      document.getElementById("login")
+        .classList.add("hidden");
+
+      document.getElementById("dashboard")
+        .classList.add("hidden");
+
+    }
+
+
+    function showRegister() {
+
+      hideAll();
+
+      document.getElementById("register")
+        .classList.remove("hidden");
+
+    }
+
+
+    function showLogin() {
+
+      hideAll();
+
+      document.getElementById("login")
+        .classList.remove("hidden");
+
+    }
+
+
+    function register() {
+
+      const name =
+        document.getElementById("registerName").value;
+
+      const email =
+        document.getElementById("registerEmail").value;
+
+      const password =
+        document.getElementById("registerPassword").value;
+
+
+      if (!name || !email || !password) {
+
+        alert("Please fill in all fields.");
+
+        return;
+
+      }
+
+
+      alert(
+        "Registration page is ready. The real online account database will be connected next."
+      );
+
+    }
+
+
+    function login() {
+
+      const email =
+        document.getElementById("loginEmail").value;
+
+      const password =
+        document.getElementById("loginPassword").value;
+
+
+      if (!email || !password) {
+
+        alert("Please enter your email and password.");
+
+        return;
+
+      }
+
+
+      alert(
+        "Login page is ready. The real account system will be connected next."
+      );
+
+    }
+
+
+    function logout() {
+
+      hideAll();
+
+      document.getElementById("home")
+        .classList.remove("hidden");
+
+    }
+
+  </script>
+
+</body>
+  </html>
